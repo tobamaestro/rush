@@ -1,12 +1,17 @@
 package com.hashcode.rush;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class Slide {
 
     private List<Photo> photos;
+
+    private List<Slide> shortestPath = new LinkedList<>();
+
     private Integer distance = Integer.MAX_VALUE;
+
     private Map<Slide, Integer> transitions;
 
     public Slide(List<Photo> photos, Integer distance, Map<Slide, Integer> transitions) {
@@ -37,5 +42,13 @@ public class Slide {
 
     public void setTransitions(Map<Slide, Integer> transitions) {
         this.transitions = transitions;
+    }
+
+    public List<Slide> getShortestPath() {
+        return shortestPath;
+    }
+
+    public void setShortestPath(List<Slide> shortestPath) {
+        this.shortestPath = shortestPath;
     }
 }
