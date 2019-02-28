@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -70,12 +71,13 @@ public class Main {
         return slides;
     }
 
-    public static int transitionScore(Slide s1, Slide s2) {
-        int score = 0;
-        int presek;
-        for (Photo p : s1.getPhotos()) {
-        }
+    public static long transitionScore(Slide s1, Slide s2) {
 
-        return score;
+        final long matched = s1.getTags().stream()
+                .filter(t1 -> s2.getTags().stream().anyMatch(t1::equals)).count();
+        final long onlyInSlide1 = s1.getTags().size() - matched;
+        final long onlyInSlide2 = s2.getTags().size() - matched;
+
+        return Stream.of(matched, onlyInSlide1, onlyInSlide2).min(Long::compareTo).orElseThrow(RuntimeException::new);
     }
 }
