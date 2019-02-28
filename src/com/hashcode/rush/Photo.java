@@ -1,14 +1,15 @@
 package com.hashcode.rush;
 
 import java.util.List;
+import java.util.Set;
 
 public class Photo {
 
   private int id;
   private String orientation;
-  private List<String> tags;
+  private Set<String> tags;
 
-  public Photo(int id, String orientation, List<String> tags) {
+  public Photo(int id, String orientation, Set<String> tags) {
     this.id = id;
     this.orientation = orientation;
     this.tags = tags;
@@ -30,11 +31,11 @@ public class Photo {
     this.orientation = orientation;
   }
 
-  public List<String> getTags() {
+  public Set<String> getTags() {
     return tags;
   }
 
-  public void setTags(List<String> tags) {
+  public void setTags(Set<String> tags) {
     this.tags = tags;
   }
 
@@ -50,7 +51,7 @@ public class Photo {
         + "]}";
   }
 
-  public String joinTags(List<String> tags) {
+  public String joinTags(Set<String> tags) {
     StringBuilder sb = new StringBuilder();
     for (String tag : tags) {
       sb.append(tag).append(",");

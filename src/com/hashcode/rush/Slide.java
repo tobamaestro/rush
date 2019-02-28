@@ -1,28 +1,29 @@
 package com.hashcode.rush;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Slide {
 
     private List<Photo> photos;
     private Integer distance;
     private List<Slide> shortestPath;
-    private List<String> tags;
+    private Set<String> tags;
     private Map<Slide, Integer> transitions;
 
     public Slide(List<Photo> photos) {
         this.photos = photos;
         this.distance = Integer.MAX_VALUE;
         this.transitions = new HashMap<>();
-        this.tags = new ArrayList<>();
+        this.tags = new HashSet<>();
         this.shortestPath = new LinkedList<>();
     }
 
-    public Slide(List<Photo> photos, List<String> tags) {
+    public Slide(List<Photo> photos, Set<String> tags) {
         this.photos = photos;
         this.tags = tags;
         this.distance = Integer.MAX_VALUE;
@@ -30,7 +31,7 @@ public class Slide {
         this.shortestPath = new LinkedList<>();
     }
 
-    public Slide(List<Photo> photos, Integer distance, List<Slide> shortestPath, List<String> tags, Map<Slide, Integer> transitions) {
+    public Slide(List<Photo> photos, Integer distance, List<Slide> shortestPath, Set<String> tags, Map<Slide, Integer> transitions) {
         this.photos = photos;
         this.distance = distance;
         this.shortestPath = shortestPath;
@@ -70,11 +71,11 @@ public class Slide {
         this.shortestPath = shortestPath;
     }
 
-    public List<String> getTags() {
+    public Set<String> getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(Set<String> tags) {
         this.tags = tags;
     }
 }

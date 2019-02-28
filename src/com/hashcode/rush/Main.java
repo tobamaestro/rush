@@ -7,7 +7,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -31,14 +33,14 @@ public class Main {
             }
             String[] splitItems = line.split(" ");
             String[] tagsArray = (String[]) ArrayUtils.subarray(splitItems, 2, splitItems.length);
-            List<String> tags = Arrays.asList(tagsArray);
+            Set<String> tags = new HashSet<>(Arrays.asList(tagsArray));
 
             photos.add(new Photo(lineCounter - 1, splitItems[0], tags));
         }
 
-        for (Photo p : photos) {
-            System.out.println(p.toString());
-        }
+//        for (Photo p : photos) {
+//            System.out.println(p.toString());
+//        }
 
         List<Slide> allSlides = createAllSlides(photos);
 
@@ -46,12 +48,24 @@ public class Main {
 
     private static List<Slide> createAllSlides(List<Photo> photos) {
         List<Slide> slides = new ArrayList<>();
-        for (Photo p : photos) {
-            if ("H".equals(p.getOrientation())) {
-//                slides.add(new Slide(Collections.singletonList(p)));
+        for (Photo currentPhoto : photos) {
+            if ("H".equals(currentPhoto.getOrientation())) {
+                slides.add(new Slide(Collections.singletonList(currentPhoto), currentPhoto.getTags()));
                 continue;
             }
+            List<Photo> remainingPhotos = photos.subList(photos.indexOf(currentPhoto), photos.size());
+            for (Photo vertPhoto : remainingPhotos) {
+                if ("V".equals(vertPhoto.getOrientation())) {
+                    List<Photo> slidePhotos = new ArrayList<>();
+                    slidePhotos.add(currentPhoto);
+                    slidePhotos.add(vertPhoto);
 
+                    Set<String> slideTags = new HashSet<>();
+                    slideTags.addAll(currentPhoto.getTags());
+                    slideTags.addAll(vertPhoto.getTags());
+                    slides.add(new Slide(slidePhotos, slideTags));
+                }
+            }
         }
         return slides;
     }
