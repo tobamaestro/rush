@@ -11,7 +11,11 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        FileReader fr = new FileReader("a_example.txt");
+//        FileReader fr = new FileReader("a_example.txt");
+//        FileReader fr = new FileReader("b_lovely_landscapes.txt");
+//        FileReader fr = new FileReader("c_memorable_moments.txt");
+//        FileReader fr = new FileReader("d_pet_pictures.txt");
+        FileReader fr = new FileReader("e_shiny_selfies.txt");
         BufferedReader br = new BufferedReader(fr);
         String line;
         int lineCounter = -1;
