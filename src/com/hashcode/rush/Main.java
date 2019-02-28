@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -38,6 +39,21 @@ public class Main {
         for (Photo p : photos) {
             System.out.println(p.toString());
         }
+
+        List<Slide> allSlides = createAllSlides(photos);
+
+    }
+
+    private static List<Slide> createAllSlides(List<Photo> photos) {
+        List<Slide> slides = new ArrayList<>();
+        for (Photo p : photos) {
+            if ("H".equals(p.getOrientation())) {
+//                slides.add(new Slide(Collections.singletonList(p)));
+                continue;
+            }
+
+        }
+        return slides;
     }
 
     public static int transitionScore(Slide s1, Slide s2) {
