@@ -19,7 +19,7 @@ public class Dijkstra {
             Slide currentSlide = getLowestDistanceSlide(unsettledSlides);
             unsettledSlides.remove(currentSlide);
             for (Map.Entry<Slide, Integer> adjacencyPair :
-                    currentSlide.getAdjacentSlides().entrySet()) {
+                    currentSlide.getTransitions().entrySet()) {
                 Slide adjacentSlide = adjacencyPair.getKey();
                 Integer edgeWeight = adjacencyPair.getValue();
                 if (!settledSlides.contains(adjacentSlide)) {
@@ -45,7 +45,7 @@ public class Dijkstra {
         return lowestDistanceSlide;
     }
 
-    private static void CalculateMinimumDistance(Slide evaluationSlide,
+    private static void calculateMinimumDistance(Slide evaluationSlide,
                                                  Integer edgeWeigh, Slide sourceSlide) {
         Integer sourceDistance = sourceSlide.getDistance();
         if (sourceDistance + edgeWeigh < evaluationSlide.getDistance()) {
